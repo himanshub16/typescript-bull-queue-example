@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  redis:
+    image: redis
+    container_name: redis
+    volumes:
+      - ./redis-data:/data:rw
+    ports:
+      - 6379:6379
+    
+  redis-cli:
+    image: redis:latest
+    links:
+      - redis
+    command: redis-cli -h redis
